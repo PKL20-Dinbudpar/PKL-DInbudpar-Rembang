@@ -24,13 +24,35 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::get('/transaksi', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('transaksi');
+// Route for Dinas
+Route::get('/dinas', function () {
+    return view('dinas.home-dinas');
+})->middleware(['auth', 'verified'])->name('dinas-home');
+
+Route::get('/dinas/rekap', function () {
+    return view('dinas.home-dinas');
+})->middleware(['auth', 'verified'])->name('dinas-rekap');
+
+Route::get('/dinas/wisata', function () {
+    return view('dinas.home-dinas');
+})->middleware(['auth', 'verified'])->name('dinas-wisata');
+
+Route::get('/dinas/users', function () {
+    return view('dinas.home-dinas');
+})->middleware(['auth', 'verified'])->name('dinas-users');
+
+// Route for Wisata
+Route::get('/wisata', function () {
+    return view('wisata.home-wisata');
+})->middleware(['auth', 'verified'])->name('wisata-home');
+
+Route::get('/wisata/transaksi', function () {
+    return view('wisata.home-wisata');
+})->middleware(['auth', 'verified'])->name('wisata-transaksi');
 
 Route::get('/rekap', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('rekap');
+    return view('wisata.home-wisata');
+})->middleware(['auth', 'verified'])->name('wisata-rekap');
 
 
 
