@@ -20,6 +20,7 @@ class DatabaseSeeder extends Seeder
             WisataSeeder::class,
             PenggunaSeeder::class,
             TiketSeeder::class,
+            UserSeeder::class,
         ]);
     }
 }
