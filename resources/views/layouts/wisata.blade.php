@@ -14,7 +14,7 @@
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
     <body class="font-sans antialiased">
-        <div class="relative min-h-screen md:flex" x-data="{ open: true }">
+        <div class="relative min-h-screen md:flex" x-data="{ open: false }">
             {{-- Sidebar --}}
             <aside :class="{ '-translate-x-full': !open }" class="fixed md:sticky h-screen z-10 bg-blue-800 text-blue-100 w-64 px-2 py-4 inset-y-0 
                 left-0 transform md:translate-x-0 overflow-y-auto transition ease-in-out duration-200 shadow-lg">
@@ -22,7 +22,7 @@
                 <div class="flex items-center justify-between px-2 pb-3">
                     <div class="flex items-center space-x-2">
                         <a href="{{ route('wisata-home') }}">
-                            <x-application-logo class="block h-9 w-auto fill-current text-blue-100" />
+                            <x-application-logo class="inline h-9 w-auto pr-2"/>
                             <span class="text-2xl font-extrabold">SIP KuWi</span>
                         </a>
                     </div>
@@ -74,7 +74,7 @@
                             <div class="flex flex-1 items-center justify-center md:hidden">
                                 <div class="flex flex-shrink-0 items-center">
                                     <a href="{{ route('wisata-home') }}">
-                                        <x-application-logo class="block h-9 w-auto fill-current text-blue-100" />
+                                        <x-application-logo class="block h-9 w-auto" />
                                     </a>
                                 </div>
                             </div>
