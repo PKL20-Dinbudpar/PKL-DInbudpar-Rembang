@@ -21,6 +21,11 @@ class UserRoleMiddleware
         {
             return $next($request);
         }
-        return response()->json("You don't have permission for this page");
+        // return response()->json("You don't have permission for this page");
+        if (Auth::user()->role == 'dinas'){
+            return redirect('/dinas');
+        } else if (Auth::user()->role == 'wisata'){
+            return redirect('/wisata');
+        }
     }
 }

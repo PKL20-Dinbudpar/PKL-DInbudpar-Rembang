@@ -17,14 +17,20 @@ use Illuminate\Support\Facades\Route;
 
 // route index check auth
 Route::get('/', function () {
-    if (!Auth::check()) {
+    if (Auth::check()) {
+        if (Auth::user()->role == 'dinas'){
+            return redirect('/dinas');
+        } else if (Auth::user()->role == 'wisata'){
+            return redirect('/wisata');
+        }
+    } else {
         return redirect('/login');
     }
-});
+})->name('dashboard');
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+// Route::get('/dashboard', function () {
+//     return view('dashboard');
+// })->middleware(['auth', 'verified'])->name('dashboard');
 
 // Route for Dinas
 Route::middleware(['auth', 'user-role:dinas'])->group(function () {
