@@ -23,8 +23,8 @@
                     <div class="flex items-center space-x-2">
                         <a href="{{ route('wisata-home') }}">
                             <x-application-logo class="block h-9 w-auto fill-current text-blue-100" />
+                            <span class="text-2xl font-extrabold">SIP KuWi</span>
                         </a>
-                        <span class="text-2xl font-extrabold">SIP KuWi</span>
                     </div>
                     <button type="button" @click=" open = !open " class="md:hidden inline-flex p-2 items-center justify-center rounded-md text-blue-100 hover:bg-blue-700 
                         focus:outline-none">
