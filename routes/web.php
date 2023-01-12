@@ -38,15 +38,15 @@ Route::get('/dinas', function () {
 })->middleware(['auth', 'verified'])->name('dinas-home');
 
 Route::get('/dinas/rekap', function () {
-    return view('dinas.home-dinas');
+    return view('dinas.rekap-dinas');
 })->middleware(['auth', 'verified'])->name('dinas-rekap');
 
 Route::get('/dinas/wisata', function () {
-    return view('dinas.home-dinas');
+    return view('dinas.wisata-dinas');
 })->middleware(['auth', 'verified'])->name('dinas-wisata');
 
 Route::get('/dinas/users', function () {
-    return view('dinas.home-dinas');
+    return view('dinas.user-dinas');
 })->middleware(['auth', 'verified'])->name('dinas-users');
 
 // Route for Wisata
@@ -55,11 +55,11 @@ Route::get('/wisata', function () {
 })->middleware(['auth', 'verified'])->name('wisata-home');
 
 Route::get('/wisata/transaksi', function () {
-    return view('wisata.home-wisata');
+    return view('wisata.transaksi-wisata');
 })->middleware(['auth', 'verified'])->name('wisata-transaksi');
 
 Route::get('/rekap', function () {
-    return view('wisata.home-wisata');
+    return view('wisata.rekap-wisata');
 })->middleware(['auth', 'verified'])->name('wisata-rekap');
 
 
