@@ -15,55 +15,52 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// route index check auth
 Route::get('/', function () {
-    return view('welcome');
+    if (!Auth::check()) {
+        return redirect('/login');
+    }
 });
-
-// // route index check auth
-// Route::get('/', function () {
-//     if (Auth::check()) {
-//         return redirect('/dashboard');
-//     } else {
-//         return redirect('/login');
-//     }
-// });
 
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 // Route for Dinas
-Route::get('/dinas', function () {
-    return view('dinas.home-dinas');
-})->middleware(['auth', 'verified'])->name('dinas-home');
+Route::middleware(['auth', 'user-role:dinas'])->group(function () {
+    Route::get('/dinas', function () {
+        return view('dinas.home-dinas');
+    })->name('dinas-home');
 
-Route::get('/dinas/rekap', function () {
-    return view('dinas.rekap-dinas');
-})->middleware(['auth', 'verified'])->name('dinas-rekap');
+    Route::get('/dinas/rekap', function () {
+        return view('dinas.rekap-dinas');
+    })->name('dinas-rekap');
 
-Route::get('/dinas/wisata', function () {
-    return view('dinas.wisata-dinas');
-})->middleware(['auth', 'verified'])->name('dinas-wisata');
+    Route::get('/dinas/wisata', function () {
+        return view('dinas.wisata-dinas');
+    })->name('dinas-wisata');
 
-Route::get('/dinas/users', function () {
-    return view('dinas.user-dinas');
-})->middleware(['auth', 'verified'])->name('dinas-users');
+    Route::get('/dinas/users', function () {
+        return view('dinas.user-dinas');
+    })->name('dinas-users');
+});
 
 // Route for Wisata
-Route::get('/wisata', function () {
-    return view('wisata.home-wisata');
-})->middleware(['auth', 'verified'])->name('wisata-home');
+Route::middleware(['auth', 'user-role:wisata'])->group(function () {
+    Route::get('/wisata', function () {
+        return view('wisata.home-wisata');
+    })->name('wisata-home');
 
-Route::get('/wisata/transaksi', function () {
-    return view('wisata.transaksi-wisata');
-})->middleware(['auth', 'verified'])->name('wisata-transaksi');
+    Route::get('/wisata/transaksi', function () {
+        return view('wisata.transaksi-wisata');
+    })->name('wisata-transaksi');
 
-Route::get('/rekap', function () {
-    return view('wisata.rekap-wisata');
-})->middleware(['auth', 'verified'])->name('wisata-rekap');
+    Route::get('/rekap', function () {
+        return view('wisata.rekap-wisata');
+    })->name('wisata-rekap');
+});
 
-
-
+// Profile auth
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
