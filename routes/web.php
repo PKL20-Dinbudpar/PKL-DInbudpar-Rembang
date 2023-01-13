@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DaftarWisataController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -42,9 +43,7 @@ Route::middleware(['auth', 'user-role:dinas'])->group(function () {
         return view('dinas.rekap-dinas');
     })->name('dinas-rekap');
 
-    Route::get('/dinas/wisata', function () {
-        return view('dinas.wisata-dinas');
-    })->name('dinas-wisata');
+    Route::get('/dinas/wisata', 'App\Http\Controllers\DaftarWisataController@index')->name('dinas-wisata');
 
     Route::get('/dinas/users', function () {
         return view('dinas.user-dinas');
