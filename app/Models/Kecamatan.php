@@ -4,10 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Kyslik\ColumnSortable\Sortable;
 
 class Kecamatan extends Model
 {
     use HasFactory;
+    use Sortable;
 
     // Table
     protected $table = 'kecamatan';
@@ -16,6 +18,8 @@ class Kecamatan extends Model
 
     // Timestamp
     public $timestamps = false;
+
+    public $sortable = ['nama_kecamatan'];
 
     // Relation
     public function wisata()

@@ -24,12 +24,12 @@ class WisataSeeder extends Seeder
             [
                 'nama_wisata' => 'Pantai Pasir Putih wates',
                 'alamat' => 'Ds. Tasikharjo',
-                'id_kecamatan' => '090',
+                'id_kecamatan' => '90',
             ],
             [
                 'nama_wisata' => 'Pasar Brumbung',
                 'alamat' => 'Ds. Banggi',
-                'id_kecamatan' => '090',
+                'id_kecamatan' => '90',
             ],
             [
                 'nama_wisata' => 'Taman Rekreasi Pantai Kartini Rembang',
@@ -39,17 +39,17 @@ class WisataSeeder extends Seeder
             [
                 'nama_wisata' => 'Wana Wisata Kartini Mantingan',
                 'alamat' => 'Ds. Mantingan',
-                'id_kecamatan' => '020',
+                'id_kecamatan' => '20',
             ],
             [
                 'nama_wisata' => 'Makam RA. Kartini',
                 'alamat' => 'Ds. Bulu',
-                'id_kecamatan' => '020',
+                'id_kecamatan' => '20',
             ],
             [
                 'nama_wisata' => 'Taman Alas Pandansili Kadiwono',
                 'alamat' => 'Ds. Kadiwono',
-                'id_kecamatan' => '020',
+                'id_kecamatan' => '20',
             ],
             [
                 'nama_wisata' => 'Taman Konservasi Hutan Mangrove / Jembatan Merah',
@@ -89,7 +89,7 @@ class WisataSeeder extends Seeder
             [
                 'nama_wisata' => 'Taman Wisata Alam Sumber Semen',
                 'alamat' => 'Ds. Tahunan',
-                'id_kecamatan' => '040',
+                'id_kecamatan' => '40',
             ],
             [
                 'nama_wisata' => 'Wisata Alam Sendangcoyo Asri',
@@ -139,7 +139,7 @@ class WisataSeeder extends Seeder
             [
                 'nama_wisata' => 'Taman Batik Akar Kartini',
                 'alamat' => 'Ds. Mantingan',
-                'id_kecamatan' => '020',
+                'id_kecamatan' => '20',
             ],
             [
                 'nama_wisata' => 'Taman Wisata Lengkowo',
@@ -159,22 +159,22 @@ class WisataSeeder extends Seeder
             [
                 'nama_wisata' => 'Pagar Pelangi RN. ASA Dadapan',
                 'alamat' => 'Ds. Dadapan',
-                'id_kecamatan' => '060',
+                'id_kecamatan' => '60',
             ],
             [
                 'nama_wisata' => 'Bukit Cendana Candimulyo',
                 'alamat' => 'Ds. Candi Mulyo',
-                'id_kecamatan' => '060',
+                'id_kecamatan' => '60',
             ],
             [
                 'nama_wisata' => 'Ngulahan Park Sedan',
                 'alamat' => 'Ds. Ngulahan',
-                'id_kecamatan' => '060',
+                'id_kecamatan' => '60',
             ],
             [
                 'nama_wisata' => 'Kampung Ciu Pamotan',
                 'alamat' => 'Ds. Cikalan',
-                'id_kecamatan' => '070',
+                'id_kecamatan' => '70',
             ],
             [
                 'nama_wisata' => 'Taman Sulo Indah Permai',
@@ -184,7 +184,7 @@ class WisataSeeder extends Seeder
             [
                 'nama_wisata' => 'Tirta Seger Waras Kulutan',
                 'alamat' => 'Ds. Kulutan',
-                'id_kecamatan' => '030',
+                'id_kecamatan' => '30',
             ],
             [
                 'nama_wisata' => 'Taman Sarinah',
@@ -194,7 +194,7 @@ class WisataSeeder extends Seeder
             [
                 'nama_wisata' => 'Wisata Panohan',
                 'alamat' => 'Ds. Panohan',
-                'id_kecamatan' => '030',
+                'id_kecamatan' => '30',
             ],
             [
                 'nama_wisata' => 'Rumah Batik Nyak Kiok',
@@ -214,7 +214,7 @@ class WisataSeeder extends Seeder
             [
                 'nama_wisata' => 'Kincir Sutra Doplang Pamotan',
                 'alamat' => 'Ds. Pamotan',
-                'id_kecamatan' => '070',
+                'id_kecamatan' => '70',
             ],
             [
                 'nama_wisata' => 'Pantai Pulo Swalan',
@@ -229,7 +229,7 @@ class WisataSeeder extends Seeder
             [
                 'nama_wisata' => 'Karas Jati Stren ( KJS )',
                 'alamat' => 'Ds. Karas Kec. Sedan',
-                'id_kecamatan' => '060',
+                'id_kecamatan' => '60',
             ],
             [
                 'nama_wisata' => 'Wahana Wisata Sarine',

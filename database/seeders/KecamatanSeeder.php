@@ -17,39 +17,39 @@ class KecamatanSeeder extends Seeder
     {
         $kecamatan = [
             [
-                'id_kecamatan' => '010',
+                'id_kecamatan' => '10',
                 'nama_kecamatan' => 'Sumber',
             ],
             [
-                'id_kecamatan' => '020',
+                'id_kecamatan' => '20',
                 'nama_kecamatan' => 'Bulu',
             ],
             [
-                'id_kecamatan' => '030',
+                'id_kecamatan' => '30',
                 'nama_kecamatan' => 'Gunem',
             ],
             [
-                'id_kecamatan' => '040',
+                'id_kecamatan' => '40',
                 'nama_kecamatan' => 'Sale',
             ],
             [
-                'id_kecamatan' => '050',
+                'id_kecamatan' => '50',
                 'nama_kecamatan' => 'Sarang',
             ],
             [
-                'id_kecamatan' => '060',
+                'id_kecamatan' => '60',
                 'nama_kecamatan' => 'Sedan',
             ],
             [
-                'id_kecamatan' => '070',
+                'id_kecamatan' => '70',
                 'nama_kecamatan' => 'Pamotan',
             ],
             [
-                'id_kecamatan' => '080',
+                'id_kecamatan' => '80',
                 'nama_kecamatan' => 'Sulang',
             ],
             [
-                'id_kecamatan' => '090',
+                'id_kecamatan' => '90',
                 'nama_kecamatan' => 'Kaliori',
             ],
             [
