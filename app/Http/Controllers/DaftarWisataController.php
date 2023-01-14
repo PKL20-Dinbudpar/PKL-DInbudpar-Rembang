@@ -14,11 +14,26 @@ class DaftarWisataController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $wisata = Wisata::with('kecamatan')->sortable()->get();
+        $cari = $request->query('cari');
 
-        return view('dinas.wisata-dinas', ['wisata' => $wisata]);
+        if (!empty($cari)) {
+            $wisata = Wisata::with('kecamatan')
+                            ->sortable()
+                            ->leftjoin('kecamatan', 'wisata.id_kecamatan', '=', 'kecamatan.id_kecamatan')
+                            ->where('nama_wisata', 'like', "%$cari%")
+                            ->orWhere('alamat', 'like', "%$cari%")
+                            ->orWhere('kecamatan.nama_kecamatan', 'like', "%$cari%")
+                            ->get();
+        }
+        else {
+            $wisata = Wisata::with('kecamatan')->sortable()->get();
+        }
+
+        // $wisata = Wisata::with('kecamatan')->sortable()->get();
+
+        return view('dinas.wisata-dinas', ['wisata' => $wisata, 'cari' => $cari]);
     }
 
     /**
