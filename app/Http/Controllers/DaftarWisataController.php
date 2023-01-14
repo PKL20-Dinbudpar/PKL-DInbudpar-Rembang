@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Wisata;
+use App\Models\Kecamatan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -14,13 +16,9 @@ class DaftarWisataController extends Controller
      */
     public function index()
     {
-        $kecamatan = DB::table('kecamatan')->get();
+        $wisata = Wisata::with('kecamatan')->sortable()->get();
 
-        $wisata = DB::table('wisata')
-                    ->leftJoin('kecamatan', 'wisata.id_kecamatan', '=', 'kecamatan.id_kecamatan')
-                    ->get();
-                    
-        return view('dinas.wisata-dinas', ['kecamatan' => $kecamatan, 'wisata' => $wisata]);
+        return view('dinas.wisata-dinas', ['wisata' => $wisata]);
     }
 
     /**
