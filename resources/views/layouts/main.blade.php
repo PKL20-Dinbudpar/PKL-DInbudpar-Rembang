@@ -19,7 +19,7 @@
     <body class="font-sans antialiased">
         <div class="relative min-h-screen md:flex" x-data="{ open: false }">
             {{-- Sidebar --}}
-            <aside :class="{ '-translate-x-full': !open }" class="fixed md:sticky h-screen z-10 bg-blue-800 text-blue-100 w-64 px-2 py-4 inset-y-0 
+            <aside :class="{ '-translate-x-full': !open }" class="fixed md:sticky h-screen z-10 bg-cyan-400 text-black w-64 px-2 py-4 inset-y-0 
                 left-0 transform md:translate-x-0 overflow-y-auto transition ease-in-out duration-200 shadow-lg">
                 {{-- Application Logo --}}
                 <div class="flex items-center justify-between px-2 pb-3">
@@ -29,7 +29,7 @@
                             <span class="text-2xl font-extrabold">SIP KuWi</span>
                         </a>
                     </div>
-                    <button type="button" @click=" open = !open " class="md:hidden inline-flex p-2 items-center justify-center rounded-md text-blue-100 hover:bg-blue-700 
+                    <button type="button" @click=" open = !open " class="md:hidden inline-flex p-2 items-center justify-center rounded-md text-black hover:bg-indigo-200 
                         focus:outline-none">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
@@ -46,14 +46,14 @@
             </aside>
 
             {{-- Main Content --}}
-            <main class="flex-1 bg-gray-100">
-                <nav class="bg-blue-900 shadow-lg">
+            <main class="flex-1 bg-violet-100">
+                <nav class="bg-sky-100 shadow-lg">
                     <div class="mx-auto px-2 sm:px-6 lg:px-8">
                         <div class="relative flex items-center justify-between md:justify-end h-16">
                             <div class="absolute inset-y-0 left-0 flex items-center md:hidden">
                                  {{-- Mobile Button --}}
                                 <button type="button" @click="open = !open" @click.away="open = false" class="inline-flex items-center justify-center 
-                                    p-2 rounded-md text-blue-100 hover:bg-blue-700 focus:outline-none">
+                                    p-2 rounded-md text-black hover:bg-indigo-200 focus:outline-none">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="block w-6 h-6">
                                         <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
                                     </svg>                                      
@@ -69,7 +69,7 @@
                             <div class="absolute inset-y-0 right-0 flex items-center">
                                 <x-dropdown align="right" width="48">
                                     <x-slot name="trigger">
-                                        <button class="flex items-center text-sm font-medium text-blue-100 hover:bg-blue-700 
+                                        <button class="flex items-center text-sm font-medium text-black hover:bg-indigo-200
                                             p-2 rounded-md focus:outline-none transition ease-in-out duration-200">
                                             <div>
                                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8">
