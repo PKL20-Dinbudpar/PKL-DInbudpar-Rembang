@@ -1,19 +1,17 @@
 <div class="p-6 text-gray-900">
     {{-- Message --}}
     @if (session()->has('message'))
-        <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative" role="alert">
+        <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative mb-2" role="alert" x-data="{ show: true }" x-show="show">
             <strong class="font-bold">Success!</strong>
             <span class="block sm:inline">{{ session('message') }}</span>
-            <span class="absolute top-0 bottom-0 right-0 px-4 py-3">
-                <a href="{{ route('dinas-wisata') }}">
-                    <svg class="fill-current h-6 w-6 text-green-500" role="button" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><title>Close</title><path d="M14.348 14.849a1.2 1.2 0 0 1-1.697 0L10 11.819l-2.651 3.029a1.2 1.2 0 1 1-1.697-1.697l2.758-3.15-2.759-3.152a1.2 1.2 0 1 1 1.697-1.697L10 8.183l2.651-3.031a1.2 1.2 0 1 1 1.697 1.697l-2.758 3.152 2.758 3.15a1.2 1.2 0 0 1 0 1.698z"/></svg>
-                </a>
+            <span class="absolute top-0 bottom-0 right-0 px-4 py-3" @click=" show = false ">
+                <svg class="fill-current h-6 w-6 text-green-500" role="button" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><title>Close</title><path d="M14.348 14.849a1.2 1.2 0 0 1-1.697 0L10 11.819l-2.651 3.029a1.2 1.2 0 1 1-1.697-1.697l2.758-3.15-2.759-3.152a1.2 1.2 0 1 1 1.697-1.697L10 8.183l2.651-3.031a1.2 1.2 0 1 1 1.697 1.697l-2.758 3.152 2.758 3.15a1.2 1.2 0 0 1 0 1.698z"/></svg>
             </span>
         </div>
     @endif
 
     {{-- Search Table --}}
-    <div class="justify-between mt-2">
+    <div class="justify-between">
         <form>   
             <label for="default-search" class="mb-2 text-sm font-medium text-gray-900 sr-only">Search</label>
             <div class="relative">
@@ -90,7 +88,10 @@
                         {{ $objek->kecamatan->nama_kecamatan ?? '' }}
                     </td>
                     <td class="px-6 py-4 text-right">
-                        <a href="#" class="font-medium text-blue-600 hover:underline">Edit</a>
+                        {{-- <a href="#" class="font-medium text-blue-600 hover:underline">Edit</a> --}}
+                        <x-jet-button wire:click="editConfirmation({{ $objek->id_wisata }})" class="mt-4 bg-orange-500 hover:bg-orange-400">
+                            {{ __('Edit') }}
+                        </x-jet-button>
                         {{-- <a href="#" class="font-medium text-red-600 hover:underline">Hapus</a> --}}
                         <x-jet-danger-button wire:click="deleteConfirmation({{ $objek->id_wisata }})" wire:loading.attr="disabled">
                             {{ __('Hapus') }}
@@ -106,7 +107,7 @@
         </div>
 
         <!-- Delete Wisata Confirmation Modal -->
-        <x-jet-dialog-modal wire:model="deleteConfirmation">
+        <x-jet-confirmation-modal wire:model="deleteConfirmation">
             <x-slot name="title">
                 {{ __('Hapus Objek Wisata ') }}
             </x-slot>
@@ -124,12 +125,12 @@
                     {{ __('Hapus') }}
                 </x-jet-danger-button>
             </x-slot>
-        </x-jet-dialog-modal>
+        </x-jet-confirmation-modal>
 
         <!-- Add Wisata Form Modal -->
         <x-jet-dialog-modal wire:model="addConfirmation">
             <x-slot name="title">
-                {{ __('Tambah Objek Wisata ') }}
+                {{ isset($objWisata->id_wisata) ? __('Edit Objek Wisata ') : __('Tambah Objek Wisata ') }}
             </x-slot>
 
             <x-slot name="content">
@@ -145,13 +146,13 @@
                 </div>
                 <div class="col-span-6 sm:col-span-4 mt-3">
                     <x-jet-label for="kecamatan" value="{{ __('Kecamatan') }}" />
-                    <select name="kecamatan" id="kecamatan" class="mt-1 block w-full" wire:model.defer="objWisata.kecamatan">
+                    <select name="kecamatan" id="kecamatan" class="mt-1 block w-full" wire:model.defer="objWisata.id_kecamatan">
                         <option value="">Pilih Kecamatan</option>
                         @foreach ($kecamatan as $item)
                             <option value="{{ $item->id_kecamatan }}">{{ $item->nama_kecamatan }}</option>
                         @endforeach
                     </select>
-                    <x-jet-input-error for="objWisata.kecamatan" class="mt-2" />
+                    <x-jet-input-error for="objWisata.id_kecamatan" class="mt-2" />
                 </div>
             </x-slot>
 
@@ -160,7 +161,7 @@
                     {{ __('Kembali') }}
                 </x-jet-secondary-button>
 
-                <x-jet-danger-button class="ml-3" wire:click="tambahWisata()" wire:loading.attr="disabled">
+                <x-jet-danger-button class="ml-3" wire:click="saveWisata()" wire:loading.attr="disabled">
                     {{ __('Simpan') }}
                 </x-jet-danger-button>
             </x-slot>

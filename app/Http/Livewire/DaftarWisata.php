@@ -14,6 +14,16 @@ class DaftarWisata extends Component
     public $sortBy = 'id_wisata';
     public $sortAsc = true;
     public $objWisata;
+    // default value for objWisata
+    // public function mount()
+    // {
+    //     $this->objWisata = [
+    //         'nama_wisata' => '',
+    //         'alamat' => '',
+    //         'id_kecamatan' => '',
+    //     ];
+    // }
+
 
     public $deleteConfirmation = false;
     public $addConfirmation = false;
@@ -27,7 +37,7 @@ class DaftarWisata extends Component
     protected $rules = [
         'objWisata.nama_wisata' => 'required|string|max:255',
         'objWisata.alamat' => 'required|string|max:255',
-        'objWisata.kecamatan' => 'required',
+        'objWisata.id_kecamatan' => 'required',
     ];
 
     public function render()
@@ -86,11 +96,26 @@ class DaftarWisata extends Component
         $this->addConfirmation = true;
     }
 
-    public function tambahWisata()
+    public function editConfirmation(Wisata $wisata)
+    {
+        $this->resetErrorBag();
+        $this->objWisata = $wisata;
+        $this->addConfirmation = true;
+    }
+
+    public function saveWisata()
     {
         $this->validate();
-        Wisata::create($this->objWisata);
-        session()->flash('message', 'Data berhasil ditambahkan');
-        $this->addConfirmation = false;
+
+        if (isset($this->objWisata->id_wisata)) {
+            $this->objWisata->save();
+            session()->flash('message', 'Data berhasil diubah');
+            $this->addConfirmation = false;
+        }
+        else {
+            Wisata::create($this->objWisata);
+            session()->flash('message', 'Data berhasil ditambahkan');
+            $this->addConfirmation = false;
+        }
     }
 }
