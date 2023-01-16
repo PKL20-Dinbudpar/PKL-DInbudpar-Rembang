@@ -1,9 +1,8 @@
 <?php
 
-use App\Http\Controllers\DaftarWisataController;
-use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -15,6 +14,10 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 // route index check auth
 Route::get('/', function () {
@@ -29,9 +32,17 @@ Route::get('/', function () {
     }
 })->name('dashboard');
 
-// Route::get('/dashboard', function () {
-//     return view('dashboard');
-// })->middleware(['auth', 'verified'])->name('dashboard');
+// Route::get('/wisata', function () {
+//     return view('wisata.home-wisata');
+// })->name('wisata-home');
+
+// Route::get('/wisata/transaksi', function () {
+//     return view('wisata.transaksi-wisata');
+// })->name('wisata-transaksi');
+
+// Route::get('/rekap', function () {
+//     return view('wisata.rekap-wisata');
+// })->name('wisata-rekap');
 
 // Route for Dinas
 Route::middleware(['auth', 'user-role:dinas'])->group(function () {
@@ -43,7 +54,11 @@ Route::middleware(['auth', 'user-role:dinas'])->group(function () {
         return view('dinas.rekap-dinas');
     })->name('dinas-rekap');
 
-    Route::get('/dinas/wisata', 'App\Http\Controllers\DaftarWisataController@index')->name('dinas-wisata');
+    // Route::get('/dinas/wisata', 'App\Http\Controllers\DaftarWisataController@index')->name('dinas-wisata');
+
+    Route::get('/dinas/rekap', function () {
+        return view('dinas.wisata-dinas');
+    })->name('dinas-wisata');
 
     Route::get('/dinas/users', function () {
         return view('dinas.user-dinas');
@@ -65,11 +80,12 @@ Route::middleware(['auth', 'user-role:wisata'])->group(function () {
     })->name('wisata-rekap');
 });
 
-// Profile auth
-Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+Route::middleware([
+    'auth:sanctum',
+    config('jetstream.auth_session'),
+    'verified'
+])->group(function () {
+    Route::get('/dashboard', function () {
+        return view('dashboard');
+    })->name('dashboard');
 });
-
-require __DIR__.'/auth.php';
