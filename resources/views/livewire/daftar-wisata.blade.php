@@ -1,7 +1,19 @@
 <div class="p-6 text-gray-900">
+    {{-- Message --}}
+    @if (session()->has('message'))
+        <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative" role="alert">
+            <strong class="font-bold">Success!</strong>
+            <span class="block sm:inline">{{ session('message') }}</span>
+            <span class="absolute top-0 bottom-0 right-0 px-4 py-3">
+                <a href="{{ route('dinas-wisata') }}">
+                    <svg class="fill-current h-6 w-6 text-green-500" role="button" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><title>Close</title><path d="M14.348 14.849a1.2 1.2 0 0 1-1.697 0L10 11.819l-2.651 3.029a1.2 1.2 0 1 1-1.697-1.697l2.758-3.15-2.759-3.152a1.2 1.2 0 1 1 1.697-1.697L10 8.183l2.651-3.031a1.2 1.2 0 1 1 1.697 1.697l-2.758 3.152 2.758 3.15a1.2 1.2 0 0 1 0 1.698z"/></svg>
+                </a>
+            </span>
+        </div>
+    @endif
 
     {{-- Search Table --}}
-    <div class="justify-between">
+    <div class="justify-between mt-2">
         <form>   
             <label for="default-search" class="mb-2 text-sm font-medium text-gray-900 sr-only">Search</label>
             <div class="relative">
@@ -12,6 +24,15 @@
                 <button type="submit" class="text-white absolute right-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2">Search</button>
             </div>
         </form>
+    </div>
+
+    <div class="flex justify-between">
+        <x-jet-button wire:click="create" class="mt-4 bg-green-700 hover:bg-green-600">
+            {{ __('Export Excel') }}
+        </x-jet-button>
+        <x-jet-button wire:click="addConfirmation()" class="mt-4 bg-blue-700 hover:bg-blue-500">
+            {{ __('Tambah Objek Wisata') }}
+        </x-jet-button>
     </div>
     
     {{-- Table --}}
@@ -80,7 +101,7 @@
             </tbody>
         </table>
     
-        <div class="mt-4">
+        <div class="p-4">
             {{ $wisata->links() }}
         </div>
 
@@ -101,6 +122,46 @@
 
                 <x-jet-danger-button class="ml-3" wire:click="hapusWisata({{ $deleteConfirmation }})" wire:loading.attr="disabled">
                     {{ __('Hapus') }}
+                </x-jet-danger-button>
+            </x-slot>
+        </x-jet-dialog-modal>
+
+        <!-- Add Wisata Form Modal -->
+        <x-jet-dialog-modal wire:model="addConfirmation">
+            <x-slot name="title">
+                {{ __('Tambah Objek Wisata ') }}
+            </x-slot>
+
+            <x-slot name="content">
+                <div class="col-span-6 sm:col-span-4">
+                    <x-jet-label for="nama" value="{{ __('Nama Objek Wisata') }}" />
+                    <x-jet-input id="nama" type="text" class="mt-1 block w-full" wire:model.defer="objWisata.nama_wisata" />
+                    <x-jet-input-error for="objWisata.nama_wisata" class="mt-2" />
+                </div>
+                <div class="col-span-6 sm:col-span-4 mt-3">
+                    <x-jet-label for="alamat" value="{{ __('Alamat (Desa)') }}" />
+                    <x-jet-input id="alamat" type="text" class="mt-1 block w-full" wire:model.defer="objWisata.alamat" />
+                    <x-jet-input-error for="objWisata.alamat" class="mt-2" />
+                </div>
+                <div class="col-span-6 sm:col-span-4 mt-3">
+                    <x-jet-label for="kecamatan" value="{{ __('Kecamatan') }}" />
+                    <select name="kecamatan" id="kecamatan" class="mt-1 block w-full" wire:model.defer="objWisata.kecamatan">
+                        <option value="">Pilih Kecamatan</option>
+                        @foreach ($kecamatan as $item)
+                            <option value="{{ $item->id_kecamatan }}">{{ $item->nama_kecamatan }}</option>
+                        @endforeach
+                    </select>
+                    <x-jet-input-error for="objWisata.kecamatan" class="mt-2" />
+                </div>
+            </x-slot>
+
+            <x-slot name="footer">
+                <x-jet-secondary-button wire:click="$set('addConfirmation', false)" wire:loading.attr="disabled">
+                    {{ __('Kembali') }}
+                </x-jet-secondary-button>
+
+                <x-jet-danger-button class="ml-3" wire:click="tambahWisata()" wire:loading.attr="disabled">
+                    {{ __('Simpan') }}
                 </x-jet-danger-button>
             </x-slot>
         </x-jet-dialog-modal>

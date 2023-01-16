@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\Kecamatan;
 use App\Models\Wisata;
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -12,13 +13,21 @@ class DaftarWisata extends Component
     public $search;
     public $sortBy = 'id_wisata';
     public $sortAsc = true;
+    public $objWisata;
 
     public $deleteConfirmation = false;
+    public $addConfirmation = false;
 
     protected $queryString = [
         'search' => ['except' => ''],
         'sortBy' => ['except' => 'id_wisata'],
         'sortAsc' => ['except' => true],
+    ];
+
+    protected $rules = [
+        'objWisata.nama_wisata' => 'required|string|max:255',
+        'objWisata.alamat' => 'required|string|max:255',
+        'objWisata.kecamatan' => 'required',
     ];
 
     public function render()
@@ -33,8 +42,12 @@ class DaftarWisata extends Component
                 ->orderBy($this->sortBy, $this->sortAsc ? 'asc' : 'desc');
 
         $wisata = $wisata->paginate(10);
+
+        $kecamatan = Kecamatan::all();
+
         return view('livewire.daftar-wisata', [
-            'wisata' => $wisata
+            'wisata' => $wisata,
+            'kecamatan' => $kecamatan,
         ]);
     }
 
@@ -55,8 +68,6 @@ class DaftarWisata extends Component
 
     public function deleteConfirmation($id_wisata)
     {
-        // $wisata->delete();
-        // session()->flash('message', 'Data berhasil dihapus');
         $this->deleteConfirmation = $id_wisata;
         $wisata = Wisata::where('id_wisata', $id_wisata)->first();
     }
@@ -66,5 +77,20 @@ class DaftarWisata extends Component
         $wisata->delete();
         session()->flash('message', 'Data berhasil dihapus');
         $this->deleteConfirmation = false;
+    }
+
+    public function addConfirmation()
+    {
+        $this->reset(['objWisata']);
+        $this->resetErrorBag();
+        $this->addConfirmation = true;
+    }
+
+    public function tambahWisata()
+    {
+        $this->validate();
+        Wisata::create($this->objWisata);
+        session()->flash('message', 'Data berhasil ditambahkan');
+        $this->addConfirmation = false;
     }
 }
