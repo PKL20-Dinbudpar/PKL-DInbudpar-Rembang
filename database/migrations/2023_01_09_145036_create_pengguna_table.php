@@ -25,7 +25,7 @@ return new class extends Migration
             $table->string('role')->default('dinas');
             $table->unsignedBigInteger('id_wisata')->nullable();
 
-            $table->foreign('id_wisata', 'fk_pengguna_wisata')->references('id_wisata')->on('wisata');
+            // $table->foreign('id_wisata', 'fk_pengguna_wisata')->references('id_wisata')->on('wisata');
         });
     }
 
