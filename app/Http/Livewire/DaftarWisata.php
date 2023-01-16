@@ -13,6 +13,8 @@ class DaftarWisata extends Component
     public $sortBy = 'id_wisata';
     public $sortAsc = true;
 
+    public $deleteConfirmation = false;
+
     protected $queryString = [
         'search' => ['except' => ''],
         'sortBy' => ['except' => 'id_wisata'],
@@ -49,5 +51,20 @@ class DaftarWisata extends Component
             $this->sortAsc = true;
         }
         $this->sortBy = $field;
+    }
+
+    public function deleteConfirmation($id_wisata)
+    {
+        // $wisata->delete();
+        // session()->flash('message', 'Data berhasil dihapus');
+        $this->deleteConfirmation = $id_wisata;
+        $wisata = Wisata::where('id_wisata', $id_wisata)->first();
+    }
+
+    public function hapusWisata(Wisata $wisata)
+    {
+        $wisata->delete();
+        session()->flash('message', 'Data berhasil dihapus');
+        $this->deleteConfirmation = false;
     }
 }

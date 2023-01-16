@@ -70,7 +70,10 @@
                     </td>
                     <td class="px-6 py-4 text-right">
                         <a href="#" class="font-medium text-blue-600 hover:underline">Edit</a>
-                        <a href="#" class="font-medium text-red-600 hover:underline">Hapus</a>
+                        {{-- <a href="#" class="font-medium text-red-600 hover:underline">Hapus</a> --}}
+                        <x-jet-danger-button wire:click="deleteConfirmation({{ $objek->id_wisata }})" wire:loading.attr="disabled">
+                            {{ __('Hapus') }}
+                        </x-jet-danger-button>
                     </td>
                 </tr>
                 @endforeach
@@ -80,6 +83,27 @@
         <div class="mt-4">
             {{ $wisata->links() }}
         </div>
+
+        <!-- Delete Wisata Confirmation Modal -->
+        <x-jet-dialog-modal wire:model="deleteConfirmation">
+            <x-slot name="title">
+                {{ __('Hapus Objek Wisata ') }}
+            </x-slot>
+
+            <x-slot name="content">
+                {{ __('Apa anda yakin ingin menghapus objek wisata ini?') }}
+            </x-slot>
+
+            <x-slot name="footer">
+                <x-jet-secondary-button wire:click="$set('deleteConfirmation', false)" wire:loading.attr="disabled">
+                    {{ __('Kembali') }}
+                </x-jet-secondary-button>
+
+                <x-jet-danger-button class="ml-3" wire:click="hapusWisata({{ $deleteConfirmation }})" wire:loading.attr="disabled">
+                    {{ __('Hapus') }}
+                </x-jet-danger-button>
+            </x-slot>
+        </x-jet-dialog-modal>
     </div>
 
 </div>
