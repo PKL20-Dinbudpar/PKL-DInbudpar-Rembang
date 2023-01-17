@@ -2,10 +2,12 @@
 
 namespace App\Http\Livewire;
 
+use App\Exports\WisataExport;
 use App\Models\Kecamatan;
 use App\Models\Wisata;
 use Livewire\Component;
 use Livewire\WithPagination;
+use Maatwebsite\Excel\Facades\Excel;
 
 class DaftarWisata extends Component
 {
@@ -14,16 +16,6 @@ class DaftarWisata extends Component
     public $sortBy = 'id_wisata';
     public $sortAsc = true;
     public $objWisata;
-    // default value for objWisata
-    // public function mount()
-    // {
-    //     $this->objWisata = [
-    //         'nama_wisata' => '',
-    //         'alamat' => '',
-    //         'id_kecamatan' => '',
-    //     ];
-    // }
-
 
     public $deleteConfirmation = false;
     public $addConfirmation = false;
@@ -117,5 +109,10 @@ class DaftarWisata extends Component
             session()->flash('message', 'Data berhasil ditambahkan');
             $this->addConfirmation = false;
         }
+    }
+
+    public function export()
+    {
+        return Excel::download(new WisataExport, 'DaftarWisata.xlsx');
     }
 }

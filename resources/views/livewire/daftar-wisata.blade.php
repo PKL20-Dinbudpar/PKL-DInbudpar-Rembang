@@ -24,8 +24,9 @@
         </form>
     </div>
 
-    <div class="flex justify-between">
-        <x-jet-button wire:click="create" class="mt-4 bg-green-700 hover:bg-green-600">
+    {{-- Button --}}
+    <div class="flex justify-end">
+        <x-jet-button wire:click.prevent="export" class="mt-4 mr-4 bg-green-700 hover:bg-green-600">
             {{ __('Export Excel') }}
         </x-jet-button>
         <x-jet-button wire:click="addConfirmation()" class="mt-4 bg-blue-700 hover:bg-blue-500">
@@ -33,8 +34,8 @@
         </x-jet-button>
     </div>
     
-    {{-- Table --}}
     <div class="relative overflow-x-auto shadow-md sm:rounded-lg mt-5">
+        {{-- Table --}}
         <table class="w-full text-sm text-left text-gray-600">
             <thead class="text-xs text-gray-700 bg-gray-300">
                 <tr>
