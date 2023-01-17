@@ -1,15 +1,14 @@
 <x-main-layout>
-    <div class="py-12">
+    <x-slot name="header">
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+            {{ __('Daftar User') }}
+        </h2>
+    </x-slot>
+
+    <div class="py-6">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class=" bg-gray-200 overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-3 text-gray-900">
-                    {{ __("Data User") }}
-                </div>
-            </div>
-        </div>
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="p-5 bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                
+            <div class="bg-white overflow-hidden sm:rounded-lg">
+                <livewire:daftar-user />
             </div>
         </div>
     </div>
