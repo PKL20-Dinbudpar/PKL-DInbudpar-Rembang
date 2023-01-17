@@ -10,6 +10,7 @@
         </div>
     @endif
 
+    
     {{-- Search Table --}}
     <div class="justify-between">
         <form>   
