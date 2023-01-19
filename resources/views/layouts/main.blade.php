@@ -12,8 +12,7 @@
 
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
-        {{-- <livewire:scripts /> --}}
-        {{-- @livewireChartsScripts --}}
+        @livewireChartsScripts
 
         <!-- Styles -->
         @livewireStyles
