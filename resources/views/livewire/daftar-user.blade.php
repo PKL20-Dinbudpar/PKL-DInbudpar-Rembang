@@ -186,7 +186,7 @@
                     {{ __('Kembali') }}
                 </x-jet-secondary-button>
 
-                <x-jet-danger-button class="ml-3" wire:click="saveWisata()" wire:loading.attr="disabled">
+                <x-jet-danger-button class="ml-3" wire:click="saveUser()" wire:loading.attr="disabled">
                     {{ __('Simpan') }}
                 </x-jet-danger-button>
             </x-slot>

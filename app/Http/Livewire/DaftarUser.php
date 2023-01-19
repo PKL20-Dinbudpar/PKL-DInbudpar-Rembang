@@ -77,9 +77,9 @@ class DaftarUser extends Component
         $user = User::where('id_wisata', $id_wisata)->first();
     }
 
-    public function hapusUser(User $user)
+    public function hapusUser(User $users)
     {
-        $user->delete();
+        $users->delete();
         session()->flash('message', 'Data berhasil dihapus');
         $this->deleteConfirmation = false;
     }
@@ -91,10 +91,10 @@ class DaftarUser extends Component
         $this->addConfirmation = true;
     }
 
-    public function editConfirmation(User $user)
+    public function editConfirmation(User $users)
     {
         $this->resetErrorBag();
-        $this->userWisata = $user;
+        $this->userWisata = $users;
         $this->addConfirmation = true;
     }
 
