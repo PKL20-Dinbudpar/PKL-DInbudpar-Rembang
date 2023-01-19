@@ -10,7 +10,6 @@
         </div>
     @endif
 
-    
     {{-- Search Table --}}
     <div class="justify-between">
         <form>   
@@ -43,10 +42,16 @@
                         Nama User
                     </th>
                     <th scope="col" class="px-6 py-3">
-                        Alamat
+                        Username
                     </th>
                     <th scope="col" class="px-6 py-3">
-                        Nama Wisata
+                        Password
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Email
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        id_wisata
                     </th>
                     <th scope="col" class="px-6 py-3">
                         <span class="sr-only">Aksi</span>
@@ -54,11 +59,46 @@
                 </tr>
             </thead>
             <tbody>
-
+                @foreach($users as $user)
+                    <tr class="border-b border-gray-200 hover:bg-gray-100">
+                        <td class="px-6 py-4">
+                            {{ $loop->iteration }}
+                        </td>
+                        <td class="px-6 py-4">
+                            {{ $user->name }}
+                        </td>
+                        <td class="px-6 py-4">
+                            {{ $user->username }}
+                        </td>
+                        <td class="px-6 py-4">
+                            {{ $user->password }}
+                        </td>
+                        <td class="px-6 py-4">
+                            {{ $user->email }}
+                        </td>
+                        <td class="px-6 py-4">
+                            {{ $user->id_wisata }}
+                        </td>
+                        <td class="px-6 py-4">
+                            <div class="flex justify-center">
+                                <x-jet-button wire:click="editConfirmation({{ $user->id }})" class="bg-blue-700 hover:bg-blue-500">
+                                    {{ __('Edit') }}
+                                </x-jet-button>
+                                <x-jet-danger-button wire:click="deleteConfirmation({{ $user->id }})" class="ml-2 bg-red-700 hover:bg-red-500">
+                                    {{ __('Delete') }}
+                                </x-jet-danger-button>
+                            </div>
+                        </td>
+                    </tr>
+                @endforeach
             </tbody>
         </table>
     </div>
 
+    <div class="mt-4">
+        {{-- {{ $users->links() }} --}}
+    </div>
+    
     <div class="flex justify-between">
         <x-jet-button wire:click="create" class="mt-4 bg-green-700 hover:bg-green-600">
             {{ __('Export Excel') }}
