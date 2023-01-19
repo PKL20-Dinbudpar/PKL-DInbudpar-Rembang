@@ -143,10 +143,58 @@
             </x-slot>
         </x-jet-confirmation-modal>
 
+        <x-jet-dialog-modal wire:model="addConfirmation">
+            <x-slot name="title">
+                {{ isset($userWisata->id) ? __('Edit User ') : __('Tambah User ') }}
+            </x-slot>
+
+            <x-slot name="content">
+                <div class="col-span-6 sm:col-span-4">
+                    <x-jet-label for="nama" value="{{ __('Nama User') }}" />
+                    <x-jet-input id="nama" type="text" class="mt-1 block w-full" wire:model.defer="userWisata.name" />
+                    <x-jet-input-error for="userWisata.name" class="mt-2" />
+                </div>
+                <div class="col-span-6 sm:col-span-4 mt-3">
+                    <x-jet-label for="username" value="{{ __('Username') }}" />
+                    <x-jet-input id="username" type="text" class="mt-1 block w-full" wire:model.defer="userWisata.username" />
+                    <x-jet-input-error for="userWisata.username" class="mt-2" />
+                </div>
+                <div class="col-span-6 sm:col-span-4 mt-3">
+                    <x-jet-label for="password" value="{{ __('Password') }}" />
+                    <x-jet-input id="password" type="text" class="mt-1 block w-full" wire:model.defer="userWisata.password" />
+                    <x-jet-input-error for="userWisata.password" class="mt-2" />
+                </div>
+                <div class="col-span-6 sm:col-span-4 mt-3">
+                    <x-jet-label for="email" value="{{ __('Email') }}" />
+                    <x-jet-input id="email" type="text" class="mt-1 block w-full" wire:model.defer="userWisata.email" />
+                    <x-jet-input-error for="userWisata.email" class="mt-2" />
+                </div>
+                <div class="col-span-6 sm:col-span-4 mt-3">
+                    <x-jet-label for="id_wisata" value="{{ __('Nama Wisata') }}" />
+                    <select name="id_wisata" id="id_wisata" class="mt-1 block w-full" wire:model.defer="userWisata.id_wisata">
+                        <option value="">Pilih Wisata</option>
+                        @foreach ($wisata as $item)
+                            <option value="{{ $item->id_wisata }}">{{ $item->nama_wisata }}</option>
+                        @endforeach
+                    </select>
+                    <x-jet-input-error for="userWisata.id_wisata" class="mt-2" />
+                </div>
+            </x-slot>
+
+            <x-slot name="footer">
+                <x-jet-secondary-button wire:click="$set('addConfirmation', false)" wire:loading.attr="disabled">
+                    {{ __('Kembali') }}
+                </x-jet-secondary-button>
+
+                <x-jet-danger-button class="ml-3" wire:click="saveWisata()" wire:loading.attr="disabled">
+                    {{ __('Simpan') }}
+                </x-jet-danger-button>
+            </x-slot>
+        </x-jet-dialog-modal>
     </div>
     
     <div class="flex justify-end">
-        <x-jet-button wire:click="create" class="mt-4 bg-green-700 hover:bg-green-600">
+        <x-jet-button wire:click.prevent="export" class="mt-4 bg-green-700 hover:bg-green-600">
             {{ __('Export Excel') }}
         </x-jet-button>
     </div>
