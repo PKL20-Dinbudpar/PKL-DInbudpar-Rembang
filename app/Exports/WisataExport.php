@@ -13,8 +13,8 @@ class WisataExport implements FromCollection
     public function collection()
     {
         return Wisata::with('kecamatan')
-        ->select('wisata.id_wisata', 'wisata.nama_wisata', 'wisata.alamat', 'kecamatan.nama_kecamatan')
-        ->leftjoin('kecamatan', 'wisata.id_kecamatan', '=', 'kecamatan.id_kecamatan')
-        ->get();
+                    ->select('wisata.id_wisata', 'wisata.nama_wisata', 'wisata.alamat', 'kecamatan.nama_kecamatan')
+                    ->leftjoin('kecamatan', 'wisata.id_kecamatan', '=', 'kecamatan.id_kecamatan')
+                    ->get();
     }
 }

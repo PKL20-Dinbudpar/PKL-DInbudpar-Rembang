@@ -38,6 +38,10 @@ class Wisata extends Model
     {
         return $this->hasMany(Transaksi::class, 'id_wisata', 'id_wisata');
     }
+    public function rekap()
+    {
+        return $this->hasMany(Rekap::class, 'id_wisata', 'id_wisata');
+    }
 
     // Getter
     public function getKecamatan()

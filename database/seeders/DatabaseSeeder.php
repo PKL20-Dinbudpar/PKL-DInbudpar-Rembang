@@ -21,6 +21,7 @@ class DatabaseSeeder extends Seeder
             PenggunaSeeder::class,
             TiketSeeder::class,
             UserSeeder::class,
+            RekapSeeder::class,
         ]);
     }
 }
