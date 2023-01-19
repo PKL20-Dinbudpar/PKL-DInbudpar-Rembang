@@ -51,11 +51,8 @@ Route::middleware(['auth', 'user-role:dinas'])->group(function () {
     })->name('dinas-home');
 
     Route::get('/dinas/rekap', function () {
-        return view('dinas.rekap-dinas');
+        return view('dinas.rekap-tahunan-dinas');
     })->name('dinas-rekap');
-
-    // Route::get('/dinas/wisata', 'App\Http\Controllers\DaftarWisataController@index')->name('dinas-wisata');
-
     Route::get('/dinas/wisata', function () {
         return view('dinas.wisata-dinas');
     })->name('dinas-wisata');
