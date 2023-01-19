@@ -39,19 +39,44 @@
                         No
                     </th>
                     <th scope="col" class="px-6 py-3">
-                        Nama User
+                        <div class="flex items-center">
+                            <button wire:click="sortBy('name')">
+                                Nama User
+                            </button>
+                            <x-sort-icon sortField='name' :sort-by="$sortBy" :sort-asc="$sortAsc" />
+                        </div>
                     </th>
                     <th scope="col" class="px-6 py-3">
-                        Username
+                        <div class="flex items-center">
+                            <button wire:click="sortBy('username')">
+                                Username
+                            </button>
+                            <x-sort-icon sortField='username' :sort-by="$sortBy" :sort-asc="$sortAsc" />
+                        </div>
                     </th>
                     <th scope="col" class="px-6 py-3">
-                        Password
+                        <div class="flex items-center">
+                            <button wire:click="sortBy('password')">
+                                Password
+                            </button>
+                            <x-sort-icon sortField='password' :sort-by="$sortBy" :sort-asc="$sortAsc" />
+                        </div>
                     </th>
                     <th scope="col" class="px-6 py-3">
-                        Email
+                        <div class="flex items-center">
+                            <button wire:click="sortBy('email')">
+                                Email
+                            </button>
+                            <x-sort-icon sortField='email' :sort-by="$sortBy" :sort-asc="$sortAsc" />
+                        </div>
                     </th>
                     <th scope="col" class="px-6 py-3">
-                        id_wisata
+                        <div class="flex items-center">
+                            <button wire:click="sortBy('id_wisata')">
+                                Nama Wisata
+                            </button>
+                            <x-sort-icon sortField='id_wisata' :sort-by="$sortBy" :sort-asc="$sortAsc" />
+                        </div>
                     </th>
                     <th scope="col" class="px-6 py-3">
                         <span class="sr-only">Aksi</span>
@@ -77,15 +102,15 @@
                             {{ $user->email }}
                         </td>
                         <td class="px-6 py-4">
-                            {{ $user->id_wisata }}
+                            {{ $user->wisata->nama_wisata ?? "" }}
                         </td>
                         <td class="px-6 py-4">
                             <div class="flex justify-center">
-                                <x-jet-button wire:click="editConfirmation({{ $user->id }})" class="bg-blue-700 hover:bg-blue-500">
+                                <x-jet-button wire:click="editConfirmation({{ $user->id }})" class="bg-orange-500 hover:bg-orange-400">
                                     {{ __('Edit') }}
                                 </x-jet-button>
-                                <x-jet-danger-button wire:click="deleteConfirmation({{ $user->id }})" class="ml-2 bg-red-700 hover:bg-red-500">
-                                    {{ __('Delete') }}
+                                <x-jet-danger-button wire:click="deleteConfirmation({{ $user->id }})" wire:loading.attr="disabled" class="ml-2 bg-red-700 hover:bg-red-500">
+                                    {{ __('Hapus') }}
                                 </x-jet-danger-button>
                             </div>
                         </td>
@@ -93,13 +118,34 @@
                 @endforeach
             </tbody>
         </table>
-    </div>
 
-    <div class="mt-4">
-        {{-- {{ $users->links() }} --}}
+        <div class="mt-4">
+            {{ $users->links() }}
+        </div>
+
+        <x-jet-confirmation-modal wire:model="deleteConfirmation">
+            <x-slot name="title">
+                {{ __('Hapus User ') }}
+            </x-slot>
+
+            <x-slot name="content">
+                {{ __('Apa anda yakin ingin menghapus user ini?') }}
+            </x-slot>
+
+            <x-slot name="footer">
+                <x-jet-secondary-button wire:click="$set('deleteConfirmation', false)" wire:loading.attr="disabled">
+                    {{ __('Kembali') }}
+                </x-jet-secondary-button>
+
+                <x-jet-danger-button class="ml-3" wire:click="hapusUser({{ $deleteConfirmation }})" wire:loading.attr="disabled">
+                    {{ __('Hapus') }}
+                </x-jet-danger-button>
+            </x-slot>
+        </x-jet-confirmation-modal>
+
     </div>
     
-    <div class="flex justify-between">
+    <div class="flex justify-end">
         <x-jet-button wire:click="create" class="mt-4 bg-green-700 hover:bg-green-600">
             {{ __('Export Excel') }}
         </x-jet-button>

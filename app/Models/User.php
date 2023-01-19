@@ -38,4 +38,9 @@ class User extends Authenticatable
         'password',
         'remember_token',
     ];
+
+    public function wisata()
+    {
+        return $this->belongsTo(Wisata::class, 'id_wisata', 'id_wisata');
+    }
 }

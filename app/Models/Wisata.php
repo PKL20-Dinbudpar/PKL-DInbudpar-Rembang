@@ -24,6 +24,11 @@ class Wisata extends Model
         return $this->belongsTo(Kecamatan::class, 'id_kecamatan', 'id_kecamatan');
     }
 
+    public function user()
+    {
+        return $this->hasMany(User::class, 'id_wisata', 'id_wisata');
+    }
+
     public function pengguna()
     {
         return $this->hasMany(Pengguna::class, 'id_wisata', 'id_wisata');
@@ -38,6 +43,7 @@ class Wisata extends Model
     {
         return $this->hasMany(Transaksi::class, 'id_wisata', 'id_wisata');
     }
+
     public function rekap()
     {
         return $this->hasMany(Rekap::class, 'id_wisata', 'id_wisata');
