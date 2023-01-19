@@ -65,6 +65,48 @@ class RekapSeeder extends Seeder
                 'wisatawan_mancanegara' => 50,
                 'total_pendapatan' => 1000000,
             ],
+            [
+                'tanggal' => '2022-12-17',
+                'id_wisata' => 1,
+                'wisatawan_domestik' => 8127,
+                'wisatawan_mancanegara' => 0,
+                'total_pendapatan' => 16000000,
+            ],
+            [
+                'tanggal' => '2022-12-17',
+                'id_wisata' => 2,
+                'wisatawan_domestik' => 1314,
+                'wisatawan_mancanegara' => 0,
+                'total_pendapatan' => 2600000,
+            ],
+            [
+                'tanggal' => '2022-12-17',
+                'id_wisata' => 3,
+                'wisatawan_domestik' => 0,
+                'wisatawan_mancanegara' => 0,
+                'total_pendapatan' => 0,
+            ],
+            [
+                'tanggal' => '2022-12-18',
+                'id_wisata' => 1,
+                'wisatawan_domestik' => 6115,
+                'wisatawan_mancanegara' => 0,
+                'total_pendapatan' => 12000000,
+            ],
+            [
+                'tanggal' => '2022-12-18',
+                'id_wisata' => 2,
+                'wisatawan_domestik' => 3596,
+                'wisatawan_mancanegara' => 0,
+                'total_pendapatan' => 6000000,
+            ],
+            [
+                'tanggal' => '2022-12-18',
+                'id_wisata' => 3,
+                'wisatawan_domestik' => 0,
+                'wisatawan_mancanegara' => 0,
+                'total_pendapatan' => 0,
+            ],
         ];
 
         foreach ($rekap as $data) {
