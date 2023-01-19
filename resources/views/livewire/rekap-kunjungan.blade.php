@@ -31,9 +31,14 @@
         </div>
     </div>
 
-    {{-- <livewire:livewire-column-chart
-    :column-chart-model="$columnChartModel"
-    /> --}}
+    {{-- Charts --}}
+    <div class="" style="height: 200px">
+        {{-- https://github.com/asantibanez/livewire-charts --}}
+        
+        <livewire:livewire-column-chart
+        :column-chart-model="$columnChartModel"
+        />
+    </div>
 
     <div class="flex justify-end">
         <x-jet-button class="mt-4 bg-green-700 hover:bg-green-600">
