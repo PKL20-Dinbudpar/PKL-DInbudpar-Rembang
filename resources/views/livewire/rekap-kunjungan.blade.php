@@ -29,11 +29,16 @@
                 </select>
             </div>
         </div>
-        <div class="flex justify-end">
-            <x-jet-button class="mt-4 bg-green-700 hover:bg-green-600">
-                {{ __('Export Excel') }}
-            </x-jet-button>
-        </div>
+    </div>
+
+    {{-- <livewire:livewire-column-chart
+    :column-chart-model="$columnChartModel"
+    /> --}}
+
+    <div class="flex justify-end">
+        <x-jet-button class="mt-4 bg-green-700 hover:bg-green-600">
+            {{ __('Export Excel') }}
+        </x-jet-button>
     </div>
 
     <div class="relative overflow-x-auto shadow-md sm:rounded-lg mt-5">
