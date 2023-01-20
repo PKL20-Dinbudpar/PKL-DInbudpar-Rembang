@@ -11,6 +11,8 @@ class RekapKunjungan extends Component
 {
     public $bulan;
     public $tahun;
+    public $totalWisatawan;
+    public $totalPendapatan;
 
     public $firstRun = true;
 
@@ -47,7 +49,7 @@ class RekapKunjungan extends Component
                 ->whereMonth('tanggal', '=', $this->bulan)
                 ->get();
         
-        $wisata = Wisata::all()->take(3);
+        $wisata = Wisata::all();
         
         foreach ($wisata as $key => $value) {
             $wisata_id[] = $value->id_wisata;

@@ -115,6 +115,13 @@ class RekapSeeder extends Seeder
                 'total_pendapatan' => 0,
             ],
             [
+                'tanggal' => '2022-12-17',
+                'id_wisata' => 10,
+                'wisatawan_domestik' => 602,
+                'wisatawan_mancanegara' => 0,
+                'total_pendapatan' => 0,
+            ],
+            [
                 'tanggal' => '2022-12-18',
                 'id_wisata' => 1,
                 'wisatawan_domestik' => 6115,
@@ -160,6 +167,13 @@ class RekapSeeder extends Seeder
                 'tanggal' => '2022-12-18',
                 'id_wisata' => 7,
                 'wisatawan_domestik' => 0,
+                'wisatawan_mancanegara' => 0,
+                'total_pendapatan' => 0,
+            ],
+            [
+                'tanggal' => '2022-12-18',
+                'id_wisata' => 10,
+                'wisatawan_domestik' => 1001,
                 'wisatawan_mancanegara' => 0,
                 'total_pendapatan' => 0,
             ],

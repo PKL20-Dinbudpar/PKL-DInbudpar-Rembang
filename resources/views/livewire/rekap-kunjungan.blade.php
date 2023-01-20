@@ -35,7 +35,7 @@
 
     @if ($rekap->count() > 0)
         {{-- Charts --}}
-        <div class="" style="height: 300px">
+        <div class="" style="height: 500px">
             <livewire:livewire-column-chart
             :column-chart-model="$columnChartModel"
             />
@@ -114,22 +114,31 @@
                                     $totalPendapatan += $data->total_pendapatan;
                                 @endphp
                                 <td scope="row" class="px-6 py-4 text-center">
-                                    {{ $data->wisatawan_domestik ?? 0 }}                                
+                                    {{ $data->wisatawan_domestik == 0 ? " " : $data->wisatawan_domestik }}
                                 </td>
                                 <td scope="row" class="px-6 py-4 text-center">
-                                    {{ $data->wisatawan_mancanegara ?? 0 }}
+                                    {{ $data->wisatawan_mancanegara == 0 ? " " : $data->wisatawan_mancanegara }}
                                 </td>
                                 <td scope="row" class="px-6 py-4 text-center">
-                                    {{ $data->total_pendapatan ?? 0 }}
+                                    {{ $data->total_pendapatan == 0 ? " " : $data->total_pendapatan }}
                                 </td>
+                            {{-- @else
+                                <td scope="row" class="px-6 py-4 text-center"></td>
+                                <td scope="row" class="px-6 py-4 text-center"></td>
+                                <td scope="row" class="px-6 py-4 text-center"></td> --}}
                             @endif
                         @endforeach
-                        <td scope="row" class="px-6 py-4 text-center">
-                            {{ $totalWisatawan ?? "" }}
-                        </td>
-                        <td scope="row" class="px-6 py-4 text-center">
-                            {{ $totalPendapatan ?? "" }}
-                        </td>
+                        @if ($totalWisatawan > 0 || $totalPendapatan > 0)
+                            <td scope="row" class="px-6 py-4 text-center">
+                                {{ $totalWisatawan == 0 ? " " : $totalWisatawan }}
+                            </td>
+                            <td scope="row" class="px-6 py-4 text-center">
+                                {{ $totalPendapatan == 0 ? " " : $totalPendapatan }}
+                            </td>
+                        @else
+                            <td scope="row" class="px-6 py-4 text-center"></td>
+                            <td scope="row" class="px-6 py-4 text-center"></td>
+                        @endif
                     </tr> 
                     @endforeach
                 </tbody>
