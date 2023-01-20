@@ -2,10 +2,13 @@
 
 namespace App\Http\Livewire;
 
+use App\Exports\RekapBulananExport;
 use App\Models\Rekap;
 use App\Models\Wisata;
 use Asantibanez\LivewireCharts\Models\ColumnChartModel;
 use Livewire\Component;
+use Maatwebsite\Excel\Facades\Excel;
+
 
 class RekapKunjungan extends Component
 {
@@ -78,5 +81,11 @@ class RekapKunjungan extends Component
             'wisata' => $wisata,
             'columnChartModel' => $columnChartModel,
         ]);
+    }
+
+    public function export()
+    {
+        // return Excel::download(new RekapKunjungan, 'RekapBulanan.xlsx');
+        return Excel::download(new RekapBulananExport($this->bulan, $this->tahun), 'RekapBulanan.xlsx');
     }
 }

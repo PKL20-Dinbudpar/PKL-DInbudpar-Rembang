@@ -114,8 +114,8 @@ class DaftarUser extends Component
         }
     }
 
-    // public function export()
-    // {
-    //     return Excel::download(new UserExport, 'DaftarUser.xlsx');
-    // }
+    public function export()
+    {
+        return Excel::download(new UserExport, 'DaftarUser.xlsx');
+    }
 }
