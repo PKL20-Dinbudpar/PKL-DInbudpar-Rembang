@@ -24,7 +24,10 @@
         </form>
     </div>
 
-    <div class="flex justify-between">
+    <div class="flex justify-end">
+        <x-jet-button wire:click.prevent="export" class="mt-4 mr-4 bg-green-700 hover:bg-green-600">
+            {{ __('Export Excel') }}
+        </x-jet-button>
         <x-jet-button wire:click="addConfirmation()" class="mt-4 bg-blue-700 hover:bg-blue-500">
             {{ __('Tambah User') }}
         </x-jet-button>
@@ -33,13 +36,13 @@
     {{-- Table --}}
     <div class="relative overflow-x-auto shadow-md sm:rounded-lg mt-5">
         <table class="w-full text-sm text-left text-gray-600">
-            <thead class="text-xs text-gray-700 bg-gray-300">
+            <thead class="text-xs text-gray-700 bg-gray-300 text-center">
                 <tr>
                     <th scope="col" class="px-6 py-3">
                         No
                     </th>
                     <th scope="col" class="px-6 py-3">
-                        <div class="flex items-center">
+                        <div class="flex items-center justify-center">
                             <button wire:click="sortBy('name')">
                                 Nama User
                             </button>
@@ -47,7 +50,7 @@
                         </div>
                     </th>
                     <th scope="col" class="px-6 py-3">
-                        <div class="flex items-center">
+                        <div class="flex items-center justify-center">
                             <button wire:click="sortBy('username')">
                                 Username
                             </button>
@@ -55,7 +58,7 @@
                         </div>
                     </th>
                     <th scope="col" class="px-6 py-3">
-                        <div class="flex items-center">
+                        <div class="flex items-center justify-center">
                             <button wire:click="sortBy('password')">
                                 Password
                             </button>
@@ -63,7 +66,7 @@
                         </div>
                     </th>
                     <th scope="col" class="px-6 py-3">
-                        <div class="flex items-center">
+                        <div class="flex items-center justify-center">
                             <button wire:click="sortBy('email')">
                                 Email
                             </button>
@@ -71,7 +74,7 @@
                         </div>
                     </th>
                     <th scope="col" class="px-6 py-3">
-                        <div class="flex items-center">
+                        <div class="flex items-center justify-center">
                             <button wire:click="sortBy('id_wisata')">
                                 Nama Wisata
                             </button>
@@ -86,8 +89,8 @@
             <tbody>
                 @foreach($users as $user)
                     <tr class="border-b border-gray-200 hover:bg-gray-100">
-                        <td class="px-6 py-4">
-                            {{ $loop->iteration }}
+                        <td class="px-6 py-4 text-center">
+                            {{ $users->firstItem() + $loop->index }}
                         </td>
                         <td class="px-6 py-4">
                             {{ $user->name }}
@@ -191,11 +194,5 @@
                 </x-jet-danger-button>
             </x-slot>
         </x-jet-dialog-modal>
-    </div>
-    
-    <div class="flex justify-end">
-        <x-jet-button wire:click.prevent="export" class="mt-4 bg-green-700 hover:bg-green-600">
-            {{ __('Export Excel') }}
-        </x-jet-button>
     </div>
 </div>

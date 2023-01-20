@@ -37,13 +37,13 @@
     <div class="relative overflow-x-auto shadow-md sm:rounded-lg mt-5">
         {{-- Table --}}
         <table class="w-full text-sm text-left text-gray-600">
-            <thead class="text-xs text-gray-700 bg-gray-300">
+            <thead class="text-xs text-gray-700 bg-gray-300 text-center">
                 <tr>
                     <th scope="col" class="px-6 py-3">
                         No
                     </th>
                     <th scope="col" class="px-6 py-3">
-                        <div class="flex items-center">
+                        <div class="flex items-center justify-center">
                             <button wire:click="sortBy('nama_wisata')">
                                 Nama Objek Wisata
                             </button>
@@ -51,7 +51,7 @@
                         </div>
                     </th>
                     <th scope="col" class="px-6 py-3">
-                        <div class="flex items-center">
+                        <div class="flex items-center justify-center">
                             <button wire:click="sortBy('alamat')">
                                 Alamat
                             </button>
@@ -59,7 +59,7 @@
                         </div>
                     </th>
                     <th scope="col" class="px-6 py-3">
-                        <div class="flex items-center">
+                        <div class="flex items-center justify-center">
                             <button wire:click="sortBy('kecamatan.nama_kecamatan')">
                                 Kecamatan
                             </button>
@@ -74,8 +74,7 @@
             <tbody>
                 @foreach ($wisata as $objek)
                 <tr class="bg-white border-b hover:bg-gray-200">
-                    <th scope="row" class="px-6 py-4">
-                        {{-- {{ $loop->iteration }} --}}
+                    <th scope="row" class="px-6 py-4 text-center">
                         {{ $wisata->firstItem() + $loop->index }}
                     </th>
                     <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
