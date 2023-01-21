@@ -21,7 +21,6 @@ class TiketSeeder extends Seeder
                 'nama_tiket' => 'Tiket Wisata',
                 'harga' => 10000,
                 'deskripsi' => 'Tiket Wisata',
-                // 'foto' => 'tiket.jpg',
             ],);
     }
 }

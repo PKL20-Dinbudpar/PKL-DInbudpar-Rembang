@@ -18,7 +18,7 @@ return new class extends Migration
             $table->id('id_transaksi');
             $table->dateTime('waktu_transaksi')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->unsignedBigInteger('id_wisata');
-            $table->unsignedBigInteger('id_pengguna');
+            $table->unsignedBigInteger('id_user');
             $table->unsignedBigInteger('id_tiket');
             $table->integer('jumlah_tiket')->default(0);
             $table->integer('total_pendapatan');
