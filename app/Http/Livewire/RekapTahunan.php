@@ -3,10 +3,11 @@
 namespace App\Http\Livewire;
 
 use App\Exports\RekapBulananExport;
+use App\Exports\RekapTahunanExport;
 use App\Models\Rekap;
 use App\Models\Wisata;
+use Asantibanez\LivewireCharts\Facades\LivewireCharts;
 use Asantibanez\LivewireCharts\Models\ColumnChartModel;
-use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 use Maatwebsite\Excel\Facades\Excel;
 
@@ -18,21 +19,20 @@ class RekapTahunan extends Component
 
     public $firstRun = true;
     
-
+    public function mount()
+    {
+        $this->tahun = date('Y');
+    }
+    
     protected $listeners = [
-        'onPointClick' => 'handleOnPointClick',
-        'onSliceClick' => 'handleOnSliceClick',
         'onColumnClick' => 'handleOnColumnClick',
+        'refreshComponent' => '$refresh'
     ];
 
     public function handleOnColumnClick($column)
     {
-        dd($column);
-    }
-
-    public function mount()
-    {
-        $this->tahun = date('Y');
+        // dd($column);
+        dd($this->tahun);
     }
 
     public function render()
@@ -47,16 +47,16 @@ class RekapTahunan extends Component
                 ->groupBy('id_wisata', 'bulan', 'tahun')
                 ->get();
 
-
         $wisata = Wisata::all();
 
         foreach ($wisata as $key => $value) {
             $wisata_id[] = $value->id_wisata;
-            $total = Rekap::whereYear('tanggal', '=', $this->tahun)
-                    ->whereIn('id_wisata', $wisata_id)
-                    ->get();
         }
-
+        
+        $total = Rekap::whereYear('tanggal', '=', $this->tahun)
+                ->whereIn('id_wisata', $wisata_id)
+                ->get();
+        
         $columnChartModel = $total->groupBy('id_wisata')
             ->reduce(function (ColumnChartModel $columnChartModel, $data) {
                 $wisata_name = $data->first()->wisata->nama_wisata;
@@ -64,23 +64,25 @@ class RekapTahunan extends Component
                 $warna[$data->first()->wisata->nama_wisata] = '#'.dechex(rand(0x000000, 0xFFFFFF));
 
                 return $columnChartModel->addColumn($wisata_name, $value, $warna[$wisata_name]);
-            }, (new ColumnChartModel())
+            }, LivewireCharts::columnChartModel()
                 ->setTitle('Jumlah Pengunjung Tahunan')
                 ->setAnimated($this->firstRun)
                 ->withOnColumnClickEventName('onColumnClick')
+                ->withGrid()
             );
+
+        // $this->firstRun = false;
                 
         return view('livewire.rekap-tahunan', [
+            'columnChartModel' => $columnChartModel,
             'rekap' => $rekap,
             'bulan' => $bulan,
             'wisata' => $wisata,
-            'columnChartModel' => $columnChartModel,
         ]);
     }
 
     public function export()
     {
-        // return Excel::download(new RekapKunjungan, 'RekapBulanan.xlsx');
-        return Excel::download(new RekapBulananExport($this->bulan, $this->tahun), 'RekapBulanan.xlsx');
+        return Excel::download(new RekapTahunanExport($this->tahun), 'RekapTahunan.xlsx');
     }
 }
