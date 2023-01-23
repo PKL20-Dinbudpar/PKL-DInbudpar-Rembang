@@ -2,13 +2,14 @@
 
 namespace App\Exports;
 
+use App\Http\Livewire\RekapBulanan;
 use App\Models\Rekap;
 use App\Models\Wisata;
 use Illuminate\Contracts\View\View;
 use App\Http\Livewire\RekapKunjungan;
 use Maatwebsite\Excel\Concerns\FromView;
 
-class RekapBulananExport extends RekapKunjungan implements FromView
+class RekapBulananExport extends RekapBulanan implements FromView
 {
     public $bulan;
     public $tahun;
