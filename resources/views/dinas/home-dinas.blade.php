@@ -1,8 +1,8 @@
 <x-main-layout>
     <x-slot name="header">
-        <div class="flex justify-between">
+        <div class="flex justify-between items-center">
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                {{ __('Rekap Data Kunjungan Wisata') }}
+                {{ __('Rekap Data Kunjungan Wisata Bulanan') }}
             </h2>
             <div class="flex">
                 <nav class="flex">

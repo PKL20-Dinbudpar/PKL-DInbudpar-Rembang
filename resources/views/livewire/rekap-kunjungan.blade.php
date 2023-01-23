@@ -35,11 +35,11 @@
 
     @if ($rekap->count() > 0)
         {{-- Charts --}}
-        <div class="" style="height: 500px">
+        {{-- <div class="" style="height: 500px">
             <livewire:livewire-column-chart
             :column-chart-model="$columnChartModel"
             />
-        </div>
+        </div> --}}
 
         {{-- Export Button --}}
         <div class="flex justify-end">

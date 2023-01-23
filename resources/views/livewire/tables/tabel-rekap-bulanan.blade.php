@@ -62,13 +62,16 @@
                         $totalPendapatan += $data->total_pendapatan;
                     @endphp
                     <td scope="row" class="px-6 py-4 text-center">
-                        {{ $data->wisatawan_domestik == 0 ? " " : $data->wisatawan_domestik }}
+                        {{-- {{ $data->wisatawan_domestik == 0 ? " " : $data->wisatawan_domestik }} --}}
+                        {{ $data->wisatawan_domestik ?? 0 }}
                     </td>
                     <td scope="row" class="px-6 py-4 text-center">
-                        {{ $data->wisatawan_mancanegara == 0 ? " " : $data->wisatawan_mancanegara }}
+                        {{-- {{ $data->wisatawan_mancanegara == 0 ? " " : $data->wisatawan_mancanegara }} --}}
+                        {{ $data->wisatawan_mancanegara ?? 0 }}
                     </td>
                     <td scope="row" class="px-6 py-4 text-center">
-                        {{ $data->total_pendapatan == 0 ? " " : $data->total_pendapatan }}
+                        {{-- {{ $data->total_pendapatan == 0 ? " " : $data->total_pendapatan }} --}}
+                        {{ $data->total_pendapatan ?? 0 }}
                     </td>
                 {{-- @else
                     <td scope="row" class="px-6 py-4 text-center"></td>
