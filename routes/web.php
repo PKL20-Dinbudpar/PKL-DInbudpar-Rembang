@@ -32,18 +32,6 @@ Route::get('/', function () {
     }
 })->name('dashboard');
 
-// Route::get('/wisata', function () {
-//     return view('wisata.home-wisata');
-// })->name('wisata-home');
-
-// Route::get('/wisata/transaksi', function () {
-//     return view('wisata.transaksi-wisata');
-// })->name('wisata-transaksi');
-
-// Route::get('/rekap', function () {
-//     return view('wisata.rekap-wisata');
-// })->name('wisata-rekap');
-
 // Route for Dinas
 Route::middleware(['auth', 'user-role:dinas'])->group(function () {
     Route::get('/dinas', function () {

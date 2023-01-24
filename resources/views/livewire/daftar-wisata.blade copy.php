@@ -84,12 +84,15 @@
                         {{ $objek->alamat ?? '' }}
                     </td>
                     <td class="px-6 py-4">
+                        {{-- Kecamatan --}}
                         {{ $objek->kecamatan->nama_kecamatan ?? '' }}
                     </td>
                     <td class="px-6 py-4 text-right">
+                        {{-- <a href="#" class="font-medium text-blue-600 hover:underline">Edit</a> --}}
                         <x-jet-button wire:click="editConfirmation({{ $objek->id_wisata }})" class="mt-4 bg-orange-500 hover:bg-orange-400">
                             {{ __('Edit') }}
                         </x-jet-button>
+                        {{-- <a href="#" class="font-medium text-red-600 hover:underline">Hapus</a> --}}
                         <x-jet-danger-button wire:click="deleteConfirmation({{ $objek->id_wisata }})" wire:loading.attr="disabled">
                             {{ __('Hapus') }}
                         </x-jet-danger-button>

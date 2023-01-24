@@ -50,7 +50,7 @@
 
             {{-- Main Content --}}
             <main class="flex-1 bg-sky-50">
-                <nav class="bg-violet-100 shadow-lg">
+                <nav class="bg-violet-100 shadow-lg ">
                     <div class="mx-auto px-2 sm:px-6 lg:px-8">
                         <div class="relative flex items-center justify-between md:justify-end h-16">
                             <div class="absolute inset-y-0 left-0 flex items-center md:hidden">

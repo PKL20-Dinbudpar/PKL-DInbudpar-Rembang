@@ -30,7 +30,7 @@ class Kernel extends ConsoleKernel
                 $rekap->total_pendapatan = 0;
                 $rekap->save();
             }
-        })->dailyAt('00:00');
+        })->dailyAt('22:58');
     }
 
     /**
